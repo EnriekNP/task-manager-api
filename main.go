@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"task-manager-api/config"
+	"task-manager-api/routes"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
@@ -23,10 +24,7 @@ func main() {
 	// Initialize Fiber
 	app := fiber.New()
 
-	// Test route
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("🚀 Task Manager API is running!")
-	})
+	routes.SetupRoutes(app)
 
 	// Get PORT from environment, default to 3000 if not set
 	port := os.Getenv("PORT")
